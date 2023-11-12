@@ -4,7 +4,7 @@ const path=require('path')
 const router=express.Router()
 
 router.get('/all-book',(req,res)=>{
-    fs.readFile(path.join(__dirname,'..','book.json'),'utf8',(er,data)=>{
+    fs.readFile(path.join(__dirname,'book.json'),'utf8',(er,data)=>{
         if(er) res.send(er)
         res.send(data)
     })
@@ -20,7 +20,7 @@ router.get('/id',(req,res)=>{
       `)
 })
 router.post('/book-id',(req,res)=>{
-    fs.readFile(path.join(__dirname,'..','book.json'),'utf8',(er,data)=>{
+    fs.readFile(path.join(__dirname,'book.json'),'utf8',(er,data)=>{
         const malumot=JSON.parse(data)
         const id=req.body.id
         if(malumot[id]==undefined){res.send("<h1>Malumot topilmadi!!!</h1>") }
@@ -42,10 +42,10 @@ router.get('/add',(req,res)=>{
     `)
 })
 router.post('/add-book',(req,res)=>{
-    const data=fs.readFileSync(path.join(__dirname,'..','book.json'),'utf8')
+    const data=fs.readFileSync(path.join(__dirname,'book.json'),'utf8')
     const malumot=JSON.parse(data)
     malumot.push(req.body)
-    fs.writeFileSync(path.join(__dirname,'..','book.json'),JSON.stringify(malumot))
+    fs.writeFileSync(path.join(__dirname,'book.json'),JSON.stringify(malumot))
     res.send("<h1>Malumotlar qabul qilindi!!!</h1>")
 })
 
@@ -59,7 +59,7 @@ router.get('/book-delete',(req,res)=>{
     `)
 })
 router.post('/delete',(req,res)=>{
-    const data=fs.readFileSync(path.join(__dirname,'..','book.json'))
+    const data=fs.readFileSync(path.join(__dirname,'book.json'))
     const malumot=JSON.parse(data)
     const Id=req.body.id
     let a;
@@ -69,7 +69,7 @@ router.post('/delete',(req,res)=>{
     }
     console.log(a)
     const delet=malumot.splice(a,1)
-    fs.writeFileSync(path.join(__dirname,'..','book.json'),JSON.stringify(malumot))
+    fs.writeFileSync(path.join(__dirname,'book.json'),JSON.stringify(malumot))
     res.send("<h1>Malumot o'chirildi!!!</h1>")
 })
 

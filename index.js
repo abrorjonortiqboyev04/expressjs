@@ -4,7 +4,7 @@ const app=express()
 app.use(express.json())
 app.use(express.urlencoded({extended: false}))
 
-const book= require('./routers/book.js')
+const book= require('./book.js')
 app.use('/book',book)
 
 app.listen(3000,()=>{
